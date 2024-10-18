@@ -12,7 +12,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-# readline - быстрее, чнм input
+# readline - быстрее, чем input
 # print(*output_numbers, sep='\n') - сразу списком быстрее, чем вызывать
 # print в цикле
 
