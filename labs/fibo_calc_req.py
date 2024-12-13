@@ -3,7 +3,7 @@ import sys
 
 def find_fibo_n(n):
     if n < 2:
-        return 1
+        return n
 
     return find_fibo_n(n - 2) + find_fibo_n(n - 1)
 
