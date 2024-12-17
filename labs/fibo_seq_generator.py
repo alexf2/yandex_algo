@@ -1,5 +1,7 @@
 import sys
 
+# Построение ряда Фибоначчи генератором
+
 
 def fibo_cycle_gen(index=0):
     if index < 0:

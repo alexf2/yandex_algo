@@ -1,5 +1,7 @@
 import sys
 
+# Построение ряда Фибоначчи в массив
+
 
 def fibo_cycle(index=0):
     if index < 0:
@@ -19,7 +21,7 @@ def fibo_cycle(index=0):
 def main():
     n = int(sys.stdin.readline().strip())
 
-    print(fibo_cycle(n))
+    print('cycle: ', fibo_cycle(n))
 
 
 if __name__ == '__main__':
