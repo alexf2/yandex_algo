@@ -53,6 +53,7 @@ for w, c in sorted(stat.items(), key=lambda it: it[1].count, reverse=True):
 
 
 @dataclass(slots=True, frozen=True)
+# frozen нужен для хешируемости Word, чтобы использовать его ключом словаря
 class Word:
     w: str
 
