@@ -1,3 +1,4 @@
+from collections import Counter
 from dataclasses import dataclass
 
 txt = '''26 февраля 2026 года мир, по преданию, окажется на грани – эту дату связывают
@@ -25,7 +26,7 @@ txt = '''26 февраля 2026 года мир, по преданию, окаж
 
 
 @dataclass(slots=True)
-class Counter:
+class Count:
     count: int = 0
 
 
@@ -38,7 +39,7 @@ def count_words(txt):
         w = w.lower()
         # тут специально положили в value не int, а oject, чтобы использовать
         # дефолт
-        acc.setdefault(w, Counter()).count += 1
+        acc.setdefault(w, Count()).count += 1
 
     return acc
 
@@ -47,3 +48,26 @@ stat = count_words(txt)
 print('Total words: ', len(stat), '\n')
 for w, c in sorted(stat.items(), key=lambda it: it[1].count, reverse=True):
     print(w, ': ', c.count)
+
+# Это можно переписать через словарь Counter, гораздо короче
+
+
+@dataclass(slots=True, frozen=True)
+class Word:
+    w: str
+
+
+def count_words2(txt):
+    if not txt or not isinstance(txt, str):
+        return Counter()
+
+    return Counter((Word(w=w.lower()) for w in txt.split()))
+
+
+stat2 = count_words2(txt)
+print('\n\nTotal words: ', len(stat2), '\n')
+for w, c in sorted(stat2.items(), key=lambda it: it[1], reverse=True):
+    print(w.w, ': ', c)
+
+diff = stat.keys() - set((k.w for k in stat2.keys()))
+print('\nDiff: ', diff, len(diff))
